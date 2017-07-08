@@ -4,7 +4,6 @@ var gulp = require('gulp');
 // used for concatenating/minifying bower files and other js/css
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var typescript = require('gulp-typescript');
 // used for pulling in bower files.
 var lib = require('bower-files')({
   "overrides":{
@@ -58,15 +57,6 @@ gulp.task('jsBower', ['jsBowerClean'], function() {
     .pipe(concat('vendor.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./build/js'));
-});
-
-gulp.task('default', function () {
-    return gulp.src('src/**/*.ts')
-        .pipe(ts({
-            noImplicitAny: true,
-            outFile: 'output.js'
-        }))
-        .pipe(gulp.dest('built/local'));
 });
 
 gulp.task('cssBowerClean', function(){
